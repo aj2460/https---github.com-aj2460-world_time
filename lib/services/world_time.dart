@@ -21,7 +21,7 @@ class WorldTime {
       String dt = (decodeRespose["datetime"]).toString().substring(0, 19);
 
       var date = DateTime.parse(dt);
-      var formatedDate = DateFormat().format(date);
+      var formatedDate = DateFormat.jm().format(date);
       //print(formatedDate);
       time = formatedDate.toString();
     } catch (e) {
