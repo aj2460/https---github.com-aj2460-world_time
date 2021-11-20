@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -14,7 +12,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    data = ModalRoute.of(context)!.settings.arguments as Map;
+    data = data.isNotEmpty
+        ? data
+        : ModalRoute.of(context)!.settings.arguments as Map;
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
     return SafeArea(
       child: Scaffold(
@@ -29,8 +29,17 @@ class _HomeState extends State<Home> {
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 120, 0, 10),
                   child: TextButton.icon(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/location');
+                      onPressed: () async {
+                        dynamic result =
+                            await Navigator.pushNamed(context, '/location');
+                        setState(() {
+                          data = {
+                            'time': result['time'],
+                            'location': result['location'],
+                            'flag': result['flag'],
+                            'isDayTime': result['isDayTime']
+                          };
+                        });
                       },
                       icon: Icon(Icons.location_on),
                       label: Text('Select Location')),
