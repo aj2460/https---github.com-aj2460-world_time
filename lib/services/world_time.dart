@@ -7,6 +7,7 @@ class WorldTime {
   String time = "";
   String flag;
   String url = "";
+  bool isDayTime = true;
 
   WorldTime({required this.location, required this.flag, required this.url});
 
@@ -23,6 +24,7 @@ class WorldTime {
       var date = DateTime.parse(dt);
       var formatedDate = DateFormat.jm().format(date);
       //print(formatedDate);
+      isDayTime = date.hour > 6 && date.hour < 18 ? true : false;
       time = formatedDate.toString();
     } catch (e) {
       print('Error : $e');
