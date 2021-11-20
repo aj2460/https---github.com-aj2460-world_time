@@ -16,6 +16,7 @@ class _HomeState extends State<Home> {
         ? data
         : ModalRoute.of(context)!.settings.arguments as Map;
     String bgImage = data['isDayTime'] ? 'day.png' : 'night.png';
+    Color col = data['isDayTime'] ? Colors.black : Colors.white;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -52,7 +53,8 @@ class _HomeState extends State<Home> {
                   children: [
                     Text(
                       data['location'],
-                      style: TextStyle(fontSize: 20, letterSpacing: 2),
+                      style:
+                          TextStyle(fontSize: 24, letterSpacing: 2, color: col),
                     ),
                   ],
                 ),
@@ -61,7 +63,7 @@ class _HomeState extends State<Home> {
                 ),
                 Text(
                   data['time'],
-                  style: TextStyle(fontSize: 36),
+                  style: TextStyle(fontSize: 36, color: col),
                 ),
               ],
             ),

@@ -24,7 +24,8 @@ class WorldTime {
       var date = DateTime.parse(dt);
       var formatedDate = DateFormat.jm().format(date);
       //print(formatedDate);
-      isDayTime = date.hour > 6 && date.hour < 18 ? true : false;
+      isDayTime = date.hour >= 6 && date.hour <= 18 ? true : false;
+      print(date.hour);
       time = formatedDate.toString();
     } catch (e) {
       print('Error : $e');
